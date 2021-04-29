@@ -21,7 +21,7 @@ console.log(calcArea(51, 1));
 
 // Desafio 3
 function splitSentence(str) {
-  return str.split(" ");
+  return str.split(' ');
 }
 
 console.log(splitSentence('go Trybe'));
@@ -83,17 +83,16 @@ function fizzBuzz(arrayNum8) {
   let arrayString = [];
   for (let valueNum of arrayNum8) {
     if (valueNum % 3 === 0 && valueNum % 5 === 0) {
-      arrayString.push("fizzBuzz"); 
+      arrayString.push('fizzBuzz');
     } else if (valueNum % 3 === 0) {
-      arrayString.push("fizz");
+      arrayString.push('fizz');
     } else if (valueNum % 5 === 0) {
-      arrayString.push("buzz");
+      arrayString.push('buzz');
     } else {
-      arrayString.push("bug!");
+      arrayString.push('bug!');
     }
   }
-    return arrayString;
-  
+  return arrayString;
 }
 
 console.log(fizzBuzz([2, 15, 7, 9, 45]));
