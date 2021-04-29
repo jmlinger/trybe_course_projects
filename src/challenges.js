@@ -47,10 +47,10 @@ console.log(footballPoints(1, 2));
 console.log(footballPoints(0, 0));
 
 // Desafio 6
-function highestCount(arraynum) {
-  let highestNum = Math.max.apply(Math, arraynum);
+function highestCount(arrayNum) {
+  let highestNum = Math.max.apply(Math, arrayNum);
   let countnum = 0;
-  for (let value of arraynum) {
+  for (let value of arrayNum) {
     if (value === highestNum) {
       countnum += 1;
     }
@@ -64,15 +64,14 @@ console.log(highestCount([0, 0, 0]));
 
 // Desafio 7
 function catAndMouse(mouse, cat1, cat2) {
-  distance1 = Math.abs(mouse - cat1);
-  distance2 = Math.abs(mouse - cat2);
+  let distance1 = Math.abs(mouse - cat1);
+  let distance2 = Math.abs(mouse - cat2);
   if (distance1 < distance2) {
     return 'cat1';
   } else if (distance2 < distance1) {
     return 'cat2';
-  } else {
-    return 'os gatos trombam e o rato foge';
-  }  
+  }
+    return 'os gatos trombam e o rato foge';  
 }
 
 console.log(catAndMouse(0, 3, 2));
@@ -80,9 +79,26 @@ console.log(catAndMouse(0, 6, 12));
 console.log(catAndMouse(0, 5, 5));
 
 // Desafio 8
-function fizzBuzz() {
-  // seu código aqui
+function fizzBuzz(arrayNum8) {
+  let arrayString = [];
+  for (let valueNum of arrayNum8) {
+    if (valueNum % 3 === 0 && valueNum % 5 === 0) {
+      arrayString.push("fizzBuzz"); 
+    } else if (valueNum % 3 === 0) {
+      arrayString.push("fizz");
+    } else if (valueNum % 5 === 0) {
+      arrayString.push("buzz");
+    } else {
+      arrayString.push("bug!");
+    }
+  }
+    return arrayString;
+  
 }
+
+console.log(fizzBuzz([2, 15, 7, 9, 45]));
+console.log(fizzBuzz([7, 9]));
+console.log(fizzBuzz([9, 25]));
 
 // Desafio 9
 function encode() {
