@@ -2,15 +2,19 @@
 function techList(tech, name) {
   let techObject = {};
   let techObjectList = [];
-  for(let nameTech of tech.sort()) {
+  if (tech == 0) {
+    return 'Vazio!';
+  }
+  for (let nameTech of tech.sort()) {
     techObject["tech"] = nameTech;
     techObject["name"] = name;
-    techObjectList.push(techObject);  
-  }
+    techObjectList.push(techObject);
+    }
   return techObjectList;
 }
 
-console.log(techList(["React", "Jest", "HTML", "CSS", "JavaScript"], 'John'));
+console.log(techList(['React', 'Jest', 'HTML', 'CSS', 'JavaScript'], 'John'));
+console.log(techList(''));
 
 // Desafio 11
 function generatePhoneNumber() {
