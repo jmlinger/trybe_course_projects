@@ -1,7 +1,7 @@
 // Desafio 10
 function techList(tech, name) {
   let techObjectList = [];
-  if (tech === 0) {
+  if (tech.length === 0) {
     return 'Vazio!';
   }
   for (let nameTech of tech.sort()) {
@@ -11,7 +11,7 @@ function techList(tech, name) {
 }
 
 console.log(techList(['React', 'Jest', 'HTML', 'CSS', 'JavaScript'], 'John'));
-console.log(techList(0));
+console.log(techList(''));
 
 // Desafio 11
 function generatePhoneNumber() {
@@ -20,13 +20,13 @@ function generatePhoneNumber() {
 
 // Desafio 12
 function triangleCheck(lineA, lineB, lineC) {
-  if (lineA < lineB + lineC && lineA > Math.abs(lineB - lineC)) {
+  if (lineA < lineB + lineC && lineA > Math.abs(lineB - lineC) && lineB < lineA + lineC && lineB > Math.abs(lineA - lineC) && lineC < lineB + lineA && lineC > Math.abs(lineB - lineA) ) {
     return true;
   }
   return false;
 }
 
-console.log(triangleCheck(13, 20, 8));
+console.log(triangleCheck(10, 14, 8));
 
 // Desafio 13
 function hydrate() {
