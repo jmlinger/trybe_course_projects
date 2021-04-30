@@ -100,12 +100,45 @@ console.log(fizzBuzz([7, 9]));
 console.log(fizzBuzz([9, 25]));
 
 // Desafio 9
-function encode() {
-  // seu código aqui
+function encode(strEncode) {
+  let rules = {
+    a: 1,
+    e: 2,
+    i: 3,
+    o: 4,
+    u: 5,
+  };
+  for (let indexStrE = 0; indexStrE < strEncode.length; indexStrE += 1) {
+    for (let vowels in rules) {
+      if (vowels === strEncode[indexStrE]) {
+        strEncode = strEncode.replace(vowels, rules[vowels]);
+      }
+    }
+  }
+  return strEncode;
 }
-function decode() {
-  // seu código aqui
+
+console.log(encode('aeiouaeiouaeiouaeiouaeiouaeiou'));
+
+function decode(strDecode) {
+  let rules = {
+    1: 'a',
+    2: 'e',
+    3: 'i',
+    4: 'o',
+    5: 'u',
+  };
+  for (let indexStrD = 0; indexStrD < strDecode.length; indexStrD += 1) {
+    for (let numbers in rules) {
+      if (numbers === strDecode[indexStrD]) {
+        strDecode = strDecode.replace(numbers, rules[numbers]);
+      }
+    }
+  }
+  return strDecode;
 }
+
+console.log(decode('1234512345'));
 
 module.exports = {
   calcArea,
