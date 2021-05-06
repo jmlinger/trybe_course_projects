@@ -1,4 +1,4 @@
-// adiciona cores à paleta. 
+// adiciona cores à paleta.
 const color = document.getElementsByClassName('color');
 let arrayColor = ['black', 'red', 'yellow', 'purple'];
 for (let index = 0; index < 4; index += 1) {
@@ -28,29 +28,31 @@ for (let i = 0; i < cell.length; i += 1) {
 
 // adiciona e remove classe selected nas paletcolors quando clicadas. Referência: ADRIANA BIBERG.
 color[0].classList.add('selected');
-for (let indexSelect = 0; indexSelect < color.length; indexSelect += 1) {
-color[indexSelect].addEventListener('click', selectColor);
-}
 function selectColor(selecionado) {
   const selected = document.querySelector('.selected');
   selected.classList.remove('selected');
   selecionado.target.classList.add('selected');
 }
+for (let indexSelect = 0; indexSelect < color.length; indexSelect += 1) {
+  color[indexSelect].addEventListener('click', selectColor);
+}
+
 
 // adiciona cor aos pixels.
 const pixel = document.querySelectorAll('.pixel');
-for (let indexPixels = 0; indexPixels < pixel.length; indexPixels += 1) {
-  pixel[indexPixels].addEventListener('click', printColor);
-}
 function printColor(selecionado) {
   const selected = document.querySelector('.selected');
   selecionado.target.style.backgroundColor = selected.style.backgroundColor;
 }
+for (let indexPixels = 0; indexPixels < pixel.length; indexPixels += 1) {
+  pixel[indexPixels].addEventListener('click', printColor);
+}
+
 
 // configura botão.
 const button = document.querySelector('#clear-board');
 button.addEventListener('click', function() {
   for (let indexPixels = 0; indexPixels < pixel.length; indexPixels += 1) {
-  pixel[indexPixels].style.backgroundColor = "white";
+    pixel[indexPixels].style.backgroundColor = 'white';
   }
 })
