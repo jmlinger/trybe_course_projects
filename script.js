@@ -1,7 +1,8 @@
 //adiciona cores à paleta.
+let color = document.getElementsByClassName("color");
 let arrayColor = ['black', 'red', 'yellow', 'purple'];
 for (let index = 0; index < 4; index += 1) {
-  document.getElementsByClassName("color")[index].style.backgroundColor = arrayColor[index];
+  color[index].style.backgroundColor = arrayColor[index];
 }
 
 //cria tabela pixel board.
@@ -18,7 +19,6 @@ for (let i = 0; i < 5; i += 1) {
 pixelBoard.appendChild(createTable);
 
 //configura a tabela da pixel board.
-let table = document.getElementsByTagName('table');
 let td = document.getElementsByTagName('td');
 for (i = 0; i < 25; i += 1) {
   td[i].style.width = 40 + "px";
@@ -27,3 +27,5 @@ for (i = 0; i < 25; i += 1) {
   td[i].style.backgroundColor = "white";
   td[i].classList.add('pixel');
 }
+
+color[0].classList.add('selected');
