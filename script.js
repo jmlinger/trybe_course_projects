@@ -1,37 +1,35 @@
-//adiciona cores à paleta.
-let color = document.getElementsByClassName("color");
+// adiciona cores à paleta. 
+const color = document.getElementsByClassName('color');
 let arrayColor = ['black', 'red', 'yellow', 'purple'];
 for (let index = 0; index < 4; index += 1) {
   color[index].style.backgroundColor = arrayColor[index];
 }
 
-//cria tabela pixel board.
-let pixelBoard = document.getElementById("pixel-board");
-let createTable = document.createElement('table');
+// cria tabela pixel board.
+const pixelBoard = document.getElementById('pixel-board');
+const createTable = document.createElement('table');
 for (let i = 0; i < 5; i += 1) {
-  let createRow = createTable.insertRow(0);
+  const createRow = createTable.insertRow(0);
   for (let j = 0; j < 5; j += 1) {
-    let createCell = createRow.insertCell(j);
+    createRow.insertCell(j);
   }
-  createRow = '';
-  createCell = '';
 }
 pixelBoard.appendChild(createTable);
 
-//configura a tabela da pixel board.
-let td = document.getElementsByTagName('td');
-for (i = 0; i < 25; i += 1) {
-  td[i].style.width = 40 + "px";
-  td[i].style.height = 40 + "px";
-  td[i].style.border = 1 + 'px' + ' ' + 'solid' + ' ' + 'black';
-  td[i].style.backgroundColor = "white";
-  td[i].classList.add('pixel');
+// configura a tabela da pixel board.
+const cell = document.getElementsByTagName('td');
+for (let i = 0; i < cell.length; i += 1) {
+  cell[i].style.width = 40 + 'px';
+  cell[i].style.height = 40 + 'px';
+  cell[i].style.border = 1 + 'px' + ' ' + 'solid' + ' ' + 'black';
+  cell[i].style.backgroundColor = 'white';
+  cell[i].classList.add('pixel');
 }
 
-//adiciona e remove classe selected nas paletcolors quando clicadas. Referência: ADRIANA BIBERG.
+// adiciona e remove classe selected nas paletcolors quando clicadas. Referência: ADRIANA BIBERG.
 color[0].classList.add('selected');
 for (let indexSelect = 0; indexSelect < color.length; indexSelect += 1) {
-color[indexSelect].addEventListener("click", selectColor);
+color[indexSelect].addEventListener('click', selectColor);
 }
 function selectColor(selecionado) {
   const selected = document.querySelector('.selected');
@@ -39,12 +37,20 @@ function selectColor(selecionado) {
   selecionado.target.classList.add('selected');
 }
 
-//adiciona cor aos pixels.
+// adiciona cor aos pixels.
 const pixel = document.querySelectorAll('.pixel');
 for (let indexPixels = 0; indexPixels < pixel.length; indexPixels += 1) {
-  pixel[indexPixels].addEventListener("click", printColor);
+  pixel[indexPixels].addEventListener('click', printColor);
+}
+function printColor(selecionado) {
+  const selected = document.querySelector('.selected');
+  selecionado.target.style.backgroundColor = selected.style.backgroundColor;
+}
+
+// configura botão.
+const button = document.querySelector('#clear-board');
+button.addEventListener('click', function() {
+  for (let indexPixels = 0; indexPixels < pixel.length; indexPixels += 1) {
+  pixel[indexPixels].style.backgroundColor = "white";
   }
-  function printColor(selecionado) {
-    const selected = document.querySelector('.selected');
-    selecionado.target.style.backgroundColor = selected.style.backgroundColor;
-  }
+})
