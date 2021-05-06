@@ -28,4 +28,15 @@ for (i = 0; i < 25; i += 1) {
   td[i].classList.add('pixel');
 }
 
+//adiciona e remove classe selected nas paletcolors quando clicadas. Referência: ADRIANA BIBERG.
 color[0].classList.add('selected');
+for (let indexSelect = 0; indexSelect < color.length; indexSelect += 1) {
+color[indexSelect].addEventListener("click", selectColor);
+}
+function selectColor(selecionado) {
+  const selected = document.querySelector('.selected');
+  selected.classList.remove('selected');
+  selecionado.target.classList.add('selected');
+  }
+    
+   
