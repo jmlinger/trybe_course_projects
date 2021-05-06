@@ -20,9 +20,9 @@ pixelBoard.appendChild(createTable);
 //configura a tabela da pixel board.
 let table = document.getElementsByTagName('table');
 let td = document.getElementsByTagName('td');
-table[0].style.width = 600 + "px";
-table[0].style.height = 600 + "px";
 for (i = 0; i < 25; i += 1) {
+  td[i].style.width = 40 + "px";
+  td[i].style.height = 40 + "px";
   td[i].style.border = 1 + 'px' + ' ' + 'solid' + ' ' + 'black';
   td[i].style.backgroundColor = "white";
   td[i].classList.add('pixel');
