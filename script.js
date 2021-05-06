@@ -37,6 +37,14 @@ function selectColor(selecionado) {
   const selected = document.querySelector('.selected');
   selected.classList.remove('selected');
   selecionado.target.classList.add('selected');
+}
+
+//adiciona cor aos pixels.
+const pixel = document.querySelectorAll('.pixel');
+for (let indexPixels = 0; indexPixels < pixel.length; indexPixels += 1) {
+  pixel[indexPixels].addEventListener("click", printColor);
   }
-    
-   
+  function printColor(selecionado) {
+    const selected = document.querySelector('.selected');
+    selecionado.target.style.backgroundColor = selected.style.backgroundColor;
+  }
