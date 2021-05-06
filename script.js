@@ -1,6 +1,6 @@
 // adiciona cores à paleta.
 const color = document.getElementsByClassName('color');
-let arrayColor = ['black', 'red', 'yellow', 'purple'];
+const arrayColor = ['black', 'red', 'yellow', 'purple'];
 for (let index = 0; index < 4; index += 1) {
   color[index].style.backgroundColor = arrayColor[index];
 }
@@ -19,9 +19,9 @@ pixelBoard.appendChild(createTable);
 // configura a tabela da pixel board.
 const cell = document.getElementsByTagName('td');
 for (let i = 0; i < cell.length; i += 1) {
-  cell[i].style.width = 40 + 'px';
-  cell[i].style.height = 40 + 'px';
-  cell[i].style.border = 1 + 'px' + ' ' + 'solid' + ' ' + 'black';
+  cell[i].style.width = '40px';
+  cell[i].style.height = '40px';
+  cell[i].style.border = '1px solid black';
   cell[i].style.backgroundColor = 'white';
   cell[i].classList.add('pixel');
 }
@@ -37,22 +37,22 @@ for (let indexSelect = 0; indexSelect < color.length; indexSelect += 1) {
   color[indexSelect].addEventListener('click', selectColor);
 }
 
-
 // adiciona cor aos pixels.
 const pixel = document.querySelectorAll('.pixel');
 function printColor(selecionado) {
+  const clicado = selecionado;
   const selected = document.querySelector('.selected');
-  selecionado.target.style.backgroundColor = selected.style.backgroundColor;
+  clicado.target.style.backgroundColor = selected.style.backgroundColor;
 }
 for (let indexPixels = 0; indexPixels < pixel.length; indexPixels += 1) {
   pixel[indexPixels].addEventListener('click', printColor);
 }
 
-
 // configura botão.
 const button = document.querySelector('#clear-board');
-button.addEventListener('click', function() {
+function cleanBoard() {
   for (let indexPixels = 0; indexPixels < pixel.length; indexPixels += 1) {
     pixel[indexPixels].style.backgroundColor = 'white';
   }
-})
+}
+button.addEventListener('click', cleanBoard);
