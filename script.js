@@ -5,13 +5,14 @@ const taskList = document.querySelector('#lista-tarefas');
 function taskAdd() {
   const createItemList = document.createElement('li');
   createItemList.innerText = inputText.value;
+  createItemList.classList.add('item-da-lista');
   taskList.appendChild(createItemList);
   inputText.value = '';
 }
 buttonAdd.addEventListener('click', taskAdd);
 
 // adiciona e remove cor ao item da lista selecionado. Referencia: Natalia de Souza Ribeiro, turma 11.
-const itemList = document.getElementsByTagName('li');
+const itemList = document.getElementsByClassName('item-da-lista');
 function printColorItemList(event) {
   for (let index = 0; index < itemList.length; index += 1) {
     itemList[index].classList.remove('selected');
@@ -25,3 +26,21 @@ function riscaItemLista(event) {
   event.target.classList.toggle('completed');
 }
 taskList.addEventListener('dblclick', riscaItemLista);
+
+// cria botoes na seçao de botoes.
+const numeroDeBotoes = 1;
+const sectionButtons = document.getElementById('secao-de-botoes');
+for (let indexBotoes = 0; indexBotoes < numeroDeBotoes; indexBotoes += 1) {
+  const createButton = document.createElement('button');
+  createButton.classList.add('botao-da-secao');
+  sectionButtons.appendChild(createButton);
+}
+
+// apaga a lista.
+const botao1 = document.querySelectorAll('.botao-da-secao')[0];
+botao1.id = 'apaga-tudo';
+botao1.innerText = 'Apaga lista';
+function clearList() {
+  taskList.innerHTML = null;
+}
+botao1.addEventListener('click', clearList);
