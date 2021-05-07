@@ -10,6 +10,7 @@ function taskAdd() {
 }
 buttonAdd.addEventListener('click', taskAdd);
 
+// adiciona e remove cor ao item da lista selecionado. Referencia: Natalia de Souza Ribeiro, turma 11.
 const itemList = document.getElementsByTagName('li');
 function printColorItemList(event) {
   for (let index = 0; index < itemList.length; index += 1) {
@@ -18,3 +19,9 @@ function printColorItemList(event) {
   event.target.classList.add('selected');
 }
 taskList.addEventListener('click', printColorItemList);
+
+// adiciona e remove risco no item da lista selecionado com dblclick.
+function riscaItemLista(event) {
+  event.target.classList.toggle('completed');
+}
+taskList.addEventListener('dblclick', riscaItemLista);
