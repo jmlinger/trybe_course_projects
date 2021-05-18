@@ -5,7 +5,7 @@ const secaoBotoes = document.getElementById('botoes');
 const color = document.getElementsByClassName('color');
 const pixelBoard = document.getElementById('pixel-board');
 
-// configura botão e input para criar pixelboard.
+// Insere e configura botão e input para criar pixelboard.
 createInput.id = 'board-size';
 createButton.id = 'generate-board';
 createButton.innerText = 'VQV';
