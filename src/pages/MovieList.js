@@ -12,15 +12,15 @@ class MovieList extends Component {
       movies: [],
     };
 
-    this.simulatedFetchMovies = this.simulatedFetchMovies.bind(this);
+    this.FetchMovies = this.FetchMovies.bind(this);
     this.renderMovieList = this.renderMovieList.bind(this);
   }
 
   componentDidMount() {
-    this.simulatedFetchMovies();
+    this.FetchMovies();
   }
 
-  async simulatedFetchMovies() {
+  async FetchMovies() {
     this.setState(
       { loading: true },
       async () => {

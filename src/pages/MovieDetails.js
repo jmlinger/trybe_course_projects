@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
@@ -14,15 +15,15 @@ class MovieDetails extends Component {
       movie: [],
     };
 
-    this.simulatedFetchMovie = this.simulatedFetchMovie.bind(this);
-    this.renderDetails = this.renderDetails.bind(this);
+    this.FetchMovie = this.FetchMovie.bind(this);
+    this.renderMovieDetails = this.renderMovieDetails.bind(this);
   }
 
   componentDidMount() {
-    this.simulatedFetchMovies();
+    this.FetchMovie();
   }
 
-  async simulatedFetchMovie() {
+  async FetchMovie() {
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
@@ -39,9 +40,9 @@ class MovieDetails extends Component {
     );
   }
 
-  renderDetails() {
+  renderMovieDetails() {
     const { movie } = this.state;
-    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
+    const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
 
     return (
       <div data-testid="movie-details">
@@ -51,6 +52,10 @@ class MovieDetails extends Component {
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
+        <ul>
+          <li><Link to={ `/movies/${id}/edit` }>EDITAR</Link></li>
+          <li><Link to="/">VOLTAR</Link></li>
+        </ul>
       </div>
     );
   }
@@ -60,7 +65,7 @@ class MovieDetails extends Component {
 
     return (
       <div>
-        { loading ? <Loading /> : this.renderDetails() }
+        { loading ? <Loading /> : this.renderMovieDetails() }
       </div>
     );
   }
