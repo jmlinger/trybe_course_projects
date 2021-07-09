@@ -17,6 +17,7 @@ class MovieDetails extends Component {
 
     this.FetchMovie = this.FetchMovie.bind(this);
     this.renderMovieDetails = this.renderMovieDetails.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +41,11 @@ class MovieDetails extends Component {
     );
   }
 
+  async deleteMovie() {
+    const { match: { params: { id } } } = this.props; // Destructuring em uma linha - Referência: Natalia Souza - Turma 11 - Repositório:https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/30/files
+    await movieAPI.deleteMovie(id);
+  }
+
   renderMovieDetails() {
     const { movie } = this.state;
     const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
@@ -55,6 +61,8 @@ class MovieDetails extends Component {
         <ul>
           <li><Link to={ `/movies/${id}/edit` }>EDITAR</Link></li>
           <li><Link to="/">VOLTAR</Link></li>
+          <li><Link to="/" onClick={ this.deleteMovie }>DELETAR</Link></li>
+          { /* uso da função onClick - Referência: Natalia Souza - Turma 11 */ }
         </ul>
       </div>
     );
