@@ -27,11 +27,10 @@ class EditMovie extends Component {
     this.setState(
       { status: 'loading' },
       async () => {
-        const movieFromData = await movieAPI.updateMovie(updatedMovie); // retorna API totalmente tratada.
+        await movieAPI.updateMovie(updatedMovie); // retorna API totalmente tratada.
         this.setState({
           status: '',
           shouldRedirect: true,
-          movie: movieFromData,
         });
       },
     );
