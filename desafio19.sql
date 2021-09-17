@@ -1,5 +1,5 @@
 SELECT 
-    COUNT(*)
+    COUNT(*) AS orders_count
 FROM
     orders
 WHERE
