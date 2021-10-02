@@ -1,8 +1,8 @@
 CREATE VIEW estatisticas_musicais AS
 SELECT
     COUNT(CAN.cancao_id) AS cancoes,
-    COUNT(ART.artista_id) AS artistas,
-    COUNT(ALB.album_id) AS albuns
+    COUNT(DISTINCT ART.artista_id) AS artistas,
+    COUNT(DISTINCT ALB.album_id) AS albuns
 FROM
     cancoes AS CAN
 INNER JOIN
