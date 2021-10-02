@@ -67,7 +67,7 @@ CREATE TABLE cancoes (
     artista_id INT NOT NULL,
     FOREIGN KEY (album_id)
         REFERENCES albuns (album_id),
-	FOREIGN KEY (artista_id)
+FOREIGN KEY (artista_id)
         REFERENCES artistas (artista_id)
 )  ENGINE=INNODB;
 
