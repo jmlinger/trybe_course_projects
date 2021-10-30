@@ -1,4 +1,4 @@
-const { readJSON } = require('../utilities/JSONHandler');
+const { readJSON, writeJSON } = require('../utilities/JSONHandler');
 
 const talkersJSON = './talker.json';
 
@@ -7,18 +7,31 @@ const readAll = async (_req, res) => {
   return res.status(200).json(talkers);
 };
 
-const readById = async (req, res, next) => {
+const readById = async (req, res, _next) => {
   const { id } = req.params;
   const talkers = await readJSON(talkersJSON);
   const talkerById = talkers.find((talker) => talker.id === Number(id)); // o id vem da url como string!
   
-  if (!talkerById) {
-   return next('Pessoa palestrante não encontrada');
-  }
-  
   return res.status(200).json(talkerById);
 };
 
-// /** @type { import('express').RequestHandler } */
+/** @type { import('express').RequestHandler } */
 
-module.exports = { readAll, readById };
+const addTalker = async (req, res, _next) => {
+  const { name, age, talk } = req.body;
+  
+  let talkers = await readJSON(talkersJSON);
+  const newTalker = {
+    id: talkers.length + 1,
+    name,
+    age,
+    talk,
+  };
+
+  talkers = [...talkers, newTalker];
+  await writeJSON(talkersJSON, talkers);
+
+  res.status(201).json(newTalker);
+};
+
+module.exports = { readAll, readById, addTalker };

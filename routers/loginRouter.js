@@ -1,11 +1,12 @@
 const express = require('express');
+const rescue = require('express-rescue');
 const access = require('../controllers/loginController');
+const loginValidations = require('../middlewares/loginValidations');
 
 const router = express.Router();
 
 router.post('/login',
-  access,
-  (err, _req, res, _next) => 
-    res.status(400).json({ message: `${err}` })); 
+  rescue(loginValidations),
+  rescue(access)); 
 
 module.exports = router;

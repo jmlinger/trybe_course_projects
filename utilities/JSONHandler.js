@@ -5,6 +5,6 @@ const readJSON = async (file) => {
   return JSON.parse(readFile);
 };
 
-const writeJSON = async (file, data) => fs.write(file, JSON.stringify(data));
+const writeJSON = async (file, data) => fs.writeFile(file, JSON.stringify(data));
 
 module.exports = { readJSON, writeJSON };
