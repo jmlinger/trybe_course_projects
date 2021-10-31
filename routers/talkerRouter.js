@@ -1,13 +1,13 @@
 const express = require('express');
 const rescue = require('express-rescue');
 const auth = require('../middlewares/auth');
-const addTalkerValidations = require('../middlewares/addTalkerValidations');
+const { byIdValidations, addUpdateValidations } = require('../middlewares/talkerValidations');
 const { 
   readAll,
   readById,
   addTalker,
+  updateTalker,
 } = require('../controllers/talkerController');
-const readByIdValidations = require('../middlewares/readByIdValidations');
 
 const router = express.Router();
 
@@ -15,12 +15,18 @@ router.get('/talker',
   rescue(readAll));
 
 router.get('/talker/:id', 
-  rescue(readByIdValidations),
+  rescue(byIdValidations),
   rescue(readById));
 
 router.post('/talker',
   rescue(auth),
-  rescue(addTalkerValidations),
+  rescue(addUpdateValidations),
   rescue(addTalker));
+
+router.put('/talker/:id',
+  rescue(auth),
+  rescue(byIdValidations),
+  rescue(addUpdateValidations),
+  rescue(updateTalker));
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const genaratesError = require('../utilities/generatesError');
 const { dateChecker } = require('../utilities/checkers');
+const { readJSON } = require('../utilities/JSONHandler');
 const {
   NAME_REQUIRED,
   INVALID_NAME,
@@ -8,7 +9,10 @@ const {
   INVALID_WATCHEDAT_FORMAT,
   TALK_REQUIRED,
   INVALID_RATE,
+  TALKER_NOT_FOUND,
 } = require('../utilities/errorCodes');
+
+const talkersJSON = './talker.json';
 
 const nameValidation = (name) => {
   if (!name) throw genaratesError(NAME_REQUIRED);
@@ -33,7 +37,7 @@ const watchedAtValidation = (watchedAt) => {
 };
 
 const rateValidation = (rate) => {
-  if (!rate) {
+  if (rate === undefined) {
     throw genaratesError(TALK_REQUIRED);
   }
   if (!Number.isInteger(rate) || rate < 1 || rate > 5) {
@@ -52,9 +56,13 @@ const talkValidation = (talk) => {
   return false;
 };
 
+const idValidation = (talkerById) => {
+  if (!talkerById || talkerById === -1) throw genaratesError(TALKER_NOT_FOUND);
+};
+
 /** @type { import('express').RequestHandler } */
 
-const addTalkerValidations = (req, _res, next) => {
+const addUpdateValidations = (req, _res, next) => {
   const { name, age, talk } = req.body;
   
   nameValidation(name);
@@ -64,4 +72,17 @@ const addTalkerValidations = (req, _res, next) => {
   return next();
 };
 
-module.exports = addTalkerValidations;
+const byIdValidations = async (req, _res, next) => {
+  const { id } = req.params;
+
+  const talkers = await readJSON(talkersJSON);
+  const talkerById = talkers.find((talker) => talker.id === Number(id));
+  const talkerIndexById = talkers.findIndex((talker) => talker.id === Number(id));
+
+  idValidation(talkerById);
+  idValidation(talkerIndexById);
+  
+  return next();
+};
+
+module.exports = { addUpdateValidations, byIdValidations };
