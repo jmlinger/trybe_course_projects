@@ -8,12 +8,17 @@ const {
   addTalker,
   updateTalker,
   deleteTalker,
+  searchTalker,
 } = require('../controllers/talkerController');
 
 const router = express.Router();
 
 router.get('/talker',
   rescue(readAll));
+
+router.get('/talker/search',
+  rescue(auth),
+  rescue(searchTalker));
 
 router.get('/talker/:id', 
   rescue(byIdValidations),

@@ -46,16 +46,26 @@ const updateTalker = async (req, res, _next) => {
   res.status(200).json(talkers[talkerIndexById]);
 };
 
-/** @type { import('express').RequestHandler } */
-
 const deleteTalker = async (req, res, _next) => {
   const { id } = req.params;
-
+  
   const talkers = await readJSON(talkersJSON);
   const deletedTalker = talkers.filter((talker) => talker.id !== Number(id));
   await writeJSON(talkersJSON, deletedTalker);
-
+  
   res.status(200).send({ message: 'Pessoa palestrante deletada com sucesso' });
 };
 
-module.exports = { readAll, readById, addTalker, updateTalker, deleteTalker };
+/** @type { import('express').RequestHandler } */
+
+const searchTalker = async (req, res, _next) => {
+  const { q } = req.query;
+
+  const talkers = await readJSON(talkersJSON);
+  const filteredTalker = talkers.filter((talker) => talker.name.includes(q));
+  await writeJSON(talkersJSON, filteredTalker);
+
+  res.status(200).json(filteredTalker);
+};
+
+module.exports = { readAll, readById, addTalker, updateTalker, deleteTalker, searchTalker };
