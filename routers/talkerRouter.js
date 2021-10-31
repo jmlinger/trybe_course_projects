@@ -7,6 +7,7 @@ const {
   readById,
   addTalker,
   updateTalker,
+  deleteTalker,
 } = require('../controllers/talkerController');
 
 const router = express.Router();
@@ -28,5 +29,10 @@ router.put('/talker/:id',
   rescue(byIdValidations),
   rescue(addUpdateValidations),
   rescue(updateTalker));
+
+router.delete('/talker/:id',
+  rescue(auth),
+  rescue(byIdValidations),
+  rescue(deleteTalker));
 
 module.exports = router;
