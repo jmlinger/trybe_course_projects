@@ -24,7 +24,7 @@ router.post('/talker',
   rescue(addTalker));
 
 router.put('/talker/:id',
-  // rescue(auth),
+  rescue(auth),
   rescue(byIdValidations),
   rescue(addUpdateValidations),
   rescue(updateTalker));
