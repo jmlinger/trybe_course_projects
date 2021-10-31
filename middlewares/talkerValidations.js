@@ -56,11 +56,11 @@ const talkValidation = (talk) => {
   return false;
 };
 
-const idValidation = (talkerById) => {
-  if (!talkerById || talkerById === -1) throw genaratesError(TALKER_NOT_FOUND);
+const idValidation = (byId) => {
+  if ((!byId && byId !== 0) || byId === -1) {
+    throw genaratesError(TALKER_NOT_FOUND);
+  }
 };
-
-/** @type { import('express').RequestHandler } */
 
 const addUpdateValidations = (req, _res, next) => {
   const { name, age, talk } = req.body;
@@ -68,20 +68,26 @@ const addUpdateValidations = (req, _res, next) => {
   nameValidation(name);
   ageValidation(age);
   talkValidation(talk);
-
+  
   return next();
 };
+
+/** @type { import('express').RequestHandler } */
 
 const byIdValidations = async (req, _res, next) => {
   const { id } = req.params;
 
   const talkers = await readJSON(talkersJSON);
-  const talkerById = talkers.find((talker) => talker.id === Number(id));
-  const talkerIndexById = talkers.findIndex((talker) => talker.id === Number(id));
 
-  idValidation(talkerById);
-  idValidation(talkerIndexById);
-  
+  if (req.method === 'GET') {
+    const talkerById = talkers.find((talker) => talker.id === Number(id));
+    idValidation(talkerById);
+  }
+  if (req.method === 'PUT') {
+    const talkerIndexById = talkers.findIndex((talker) => talker.id === Number(id));
+    idValidation(talkerIndexById);
+  }
+
   return next();
 };
 
