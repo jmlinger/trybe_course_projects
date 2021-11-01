@@ -13,31 +13,38 @@ const {
 
 const router = express.Router();
 
-router.get('/talker',
-  rescue(readAll));
+router
+  .route('/talker')
+  .get(
+    rescue(readAll),
+  )
+  .post(
+    rescue(auth),
+    rescue(addUpdateValidations),
+    rescue(addTalker),
+  );
 
-router.get('/talker/search',
+router
+  .get('/talker/search',
   rescue(auth),
   rescue(searchTalker));
 
-router.get('/talker/:id', 
+router
+.route('/talker/:id')
+.get(
   rescue(byIdValidations),
-  rescue(readById));
-
-router.post('/talker',
-  rescue(auth),
-  rescue(addUpdateValidations),
-  rescue(addTalker));
-
-router.put('/talker/:id',
+  rescue(readById),
+)
+.put(
   rescue(auth),
   rescue(byIdValidations),
   rescue(addUpdateValidations),
-  rescue(updateTalker));
-
-router.delete('/talker/:id',
+  rescue(updateTalker),
+)
+.delete(
   rescue(auth),
   rescue(byIdValidations),
-  rescue(deleteTalker));
+  rescue(deleteTalker),
+);
 
 module.exports = router;

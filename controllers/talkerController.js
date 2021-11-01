@@ -56,8 +56,6 @@ const deleteTalker = async (req, res, _next) => {
   res.status(200).send({ message: 'Pessoa palestrante deletada com sucesso' });
 };
 
-/** @type { import('express').RequestHandler } */
-
 const searchTalker = async (req, res, _next) => {
   const { q } = req.query;
 

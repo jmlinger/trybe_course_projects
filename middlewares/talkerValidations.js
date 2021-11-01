@@ -72,8 +72,6 @@ const addUpdateValidations = (req, _res, next) => {
   return next();
 };
 
-/** @type { import('express').RequestHandler } */
-
 const byIdValidations = async (req, _res, next) => {
   const { id } = req.params;
 

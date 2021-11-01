@@ -1,5 +1,3 @@
-/** @type { import('express').RequestHandler } */
-
 const { INVALID_TOLKEN, TOKEN_NOT_FOUND } = require('../utilities/errorCodes');
 const genaratesError = require('../utilities/generatesError');
 
