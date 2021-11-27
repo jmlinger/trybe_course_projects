@@ -5,11 +5,9 @@ const productSchema = Joi.object({
   quantity: Joi.number().integer().min(1).required(),
 });
 
-const productValidation = (product) => productSchema.validate(product);
-
 // console.log(productSchema.validate({ name: 'aliaa', quantity: '' }).error.details[0].message);
-// console.log(productSchema.validate({ name: 'aliaa', quantity: '' }).error);
+// console.log(productValidation({ name: 'aliaa', quantity: '' }).error);
 
 module.exports = {
-  productValidation,
+  productValidation: (product) => productSchema.validate(product),
 };

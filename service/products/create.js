@@ -15,5 +15,5 @@ module.exports = async (product) => {
   }
 
   const newProduct = (await Products.create(product)).ops[0];
-  return newProduct; // ops chave que contem um array com um obj que contem a alteração resultante no db.
+  return newProduct; // ops chave que contem a alteração resultante no db (novo produto!!).
 };

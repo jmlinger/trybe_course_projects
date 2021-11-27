@@ -1,4 +1,4 @@
-// Referência: Kevin Oliveira, turma 12, Repositório: https://github.com/tryber/sd-012-store-manager/pull/87/files.
+// Adaptado de: Kevin Oliveira, turma 12, Repositório: https://github.com/tryber/sd-012-store-manager/pull/87/files.
 const { StatusCodes } = require('http-status-codes');
 
 const invalidData = (error) => {

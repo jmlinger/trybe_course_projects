@@ -3,10 +3,11 @@ const Service = require('../../service/products');
 
 module.exports = async (req, res, next) => {
   try {
-    const product = req.body;
-    const newProduct = await Service.create(product);
+    const { id } = req.params;
 
-    return res.status(StatusCodes.CREATED).json(newProduct);
+    const productById = await Service.findById(id);
+
+    res.status(StatusCodes.OK).json(productById);
   } catch (err) {
     next(err);
   }
