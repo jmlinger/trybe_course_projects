@@ -11,7 +11,7 @@ module.exports = async (product) => {
   }
 
   if ((await find(product)).length > 0) {
-    throw invalidData(Error('Product already exists'));
+    throw invalidData('Product already exists');
   }
 
   const newProduct = (await Products.create(product)).ops[0];
