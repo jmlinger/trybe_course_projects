@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongodb');
 const { invalidData, invalidId } = require('../../utils/setOfErrors');
 const { quantityValidation } = require('./validations');
-const Products = require('../../model/entity')('sales');
+const Sales = require('../../model/entity')('sales');
 
 module.exports = async (sales) => {
   sales.forEach((sale) => {
@@ -16,6 +16,6 @@ module.exports = async (sales) => {
       throw invalidData('Wrong product ID or invalid quantity');
     }
   });
-  const newProduct = (await Products.create(sales)).ops[0];
+  const newProduct = (await Sales.create(sales)).ops[0];
   return newProduct;
 };

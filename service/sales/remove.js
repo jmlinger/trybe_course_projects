@@ -1,10 +1,19 @@
-const findById = require('./findById');
-const Product = require('../../model/entity')('products');
+const { ObjectId } = require('mongodb');
+const { invalidData } = require('../../utils/setOfErrors');
+const Sales = require('../../model/entity')('sales');
 
 module.exports = async (id) => {
-  const productRemoved = await findById(id);
+  if (!ObjectId.isValid(id)) {
+    throw invalidData('Wrong sale ID format');
+  }
 
-  await Product.remove(id);
+  const saleRemoved = await Sales.findById(id);
 
-  return productRemoved;
+  if (!saleRemoved) {
+    throw invalidData('Wrong sale ID format');
+  }
+
+  await Sales.remove(id);
+
+  return saleRemoved;
 };

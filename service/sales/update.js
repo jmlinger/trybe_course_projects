@@ -1,5 +1,5 @@
 const { ObjectId } = require('mongodb');
-const Product = require('../../model/entity')('sales');
+const Sales = require('../../model/entity')('sales');
 const { invalidData, invalidId } = require('../../utils/setOfErrors');
 const findById = require('./findById');
 const { quantityValidation } = require('./validations');
@@ -17,9 +17,9 @@ module.exports = async (id, sale) => {
     throw invalidData('Wrong product ID or invalid quantity');
   }
   console.log(sale);
-  await Product.update({ id, sale });
+  await Sales.update({ id, sale });
   
-  const updatedProduct = await findById(id);
+  const updatedSale = await findById(id);
 
-  return updatedProduct;
+  return updatedSale;
 };

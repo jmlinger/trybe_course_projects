@@ -1,7 +1,7 @@
-const Products = require('../../model/entity')('sales');
+const Sales = require('../../model/entity')('sales');
 
 module.exports = async () => {
-  const getAll = await Products.find();
+  const getAll = await Sales.find();
   
   return getAll;
 };
