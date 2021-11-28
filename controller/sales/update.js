@@ -1,14 +1,11 @@
 const { StatusCodes } = require('http-status-codes');
-const Service = require('../../service/products');
+const Service = require('../../service/sales');
 
-module.exports = async (req, res, next) => {
-  try {
+module.exports = async (req, res, _next) => {
     const { id } = req.params;
-    const product = req.body;
+    const sale = req.body;
 
-    const updatedProduct = await Service.update(id, product);
-    res.status(StatusCodes.OK).json(updatedProduct);
-  } catch (err) {
-    next(err);
-  }
+    const updatedSale = await Service.update(id, sale);
+   
+    res.status(StatusCodes.OK).json(updatedSale);
 };

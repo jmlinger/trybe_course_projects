@@ -8,7 +8,7 @@ module.exports = async (collection, entity) => {
   return db.collection(collection).updateOne(
     { _id: ObjectId(id) },
     {
-      $set: entityWithoutId,
+      $set: { itensSold: entityWithoutId.sale },
     },
   );
 };
