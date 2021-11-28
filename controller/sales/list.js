@@ -1,12 +1,8 @@
 const { StatusCodes } = require('http-status-codes');
-const Service = require('../../service/products');
+const Service = require('../../service/sales');
 
-module.exports = async (_req, res, next) => {
-  try {
+module.exports = async (_req, res, _next) => {
     const list = await Service.find();
 
-    res.status(StatusCodes.OK).json({ products: list });
-  } catch (err) {
-    next(err);
-  }
+    res.status(StatusCodes.OK).json({ sales: list });
 };

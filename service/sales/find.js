@@ -1,14 +1,7 @@
-const Products = require('../../model/entity')('products');
+const Products = require('../../model/entity')('sales');
 
-module.exports = async (filters) => {
+module.exports = async () => {
   const getAll = await Products.find();
   
-  if (filters) {
-    const { name } = filters;
-    const filteredByName = getAll
-      .filter((product) => product.name.toUpperCase() === name.toUpperCase());
-    return filteredByName;
-  }
-
   return getAll;
 };

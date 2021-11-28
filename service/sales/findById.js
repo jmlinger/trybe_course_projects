@@ -1,16 +1,16 @@
 const { ObjectId } = require('mongodb');
-const { invalidId } = require('../../utils/setOfErrors');
-const Products = require('../../model/entity')('products');
+const { notFound } = require('../../utils/setOfErrors');
+const Products = require('../../model/entity')('sales');
 
 module.exports = async (id) => {
   if (!ObjectId.isValid(id)) {
-    throw invalidId();
+    throw notFound();
   }
 
   const productById = await Products.findById(id);
 
   if (!productById) {
-    throw invalidId();
+    throw notFound();
   }
 
   return productById;
