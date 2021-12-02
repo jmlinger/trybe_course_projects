@@ -1,7 +1,8 @@
 const connection = require('../connection');
 
 module.exports = async (entity) => {
-  const { name, email } = entity;
   const db = await connection();
-  return db.collection('users').insertOne({ name, email, role: 'user' });
+  const newUser = await db.collection('users').insertOne({ ...entity, role: 'user' });
+
+  return newUser;
 };

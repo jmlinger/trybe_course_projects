@@ -1,16 +1,28 @@
 const { StatusCodes } = require('http-status-codes');
 
-const invalidEntries = () => ({
+const INVALID_ENTRIES = {
     status: StatusCodes.BAD_REQUEST,
     message: 'Invalid entries. Try again.',
-});
+};
 
-const alreadyResgistered = (keyName) => ({
+const ALREADY_REGISTERED = {
   status: StatusCodes.CONFLICT,
-  message: `${keyName.charAt(0).toUpperCase() + keyName.slice(1)} already registered`, // lógica para colocar a primeira letra como maiúscula.
-});
+  message: 'Email already registered',
+};
+
+const ALL_MUST_BE_FILLED = {
+  status: StatusCodes.UNAUTHORIZED,
+  message: 'All fields must be filled',
+};
+
+const INCORRECT_LOGIN = {
+  status: StatusCodes.UNAUTHORIZED,
+  message: 'Incorrect username or password',
+};
 
 module.exports = {
-  invalidEntries,
-  alreadyResgistered,
+  INVALID_ENTRIES,
+  ALREADY_REGISTERED,
+  ALL_MUST_BE_FILLED,
+  INCORRECT_LOGIN,
 };
