@@ -5,8 +5,8 @@ const { ALREADY_REGISTERED, INVALID_ENTRIES } = require('../../utils/errorSet');
 const { userValidation } = require('./validations');
 
 module.exports = async (user) => {
-  const { email } = user;
-  const userByEmail = await find({ email });
+  const { email: userEmail } = user;
+  const userByEmail = await find({ email: userEmail });
 
   if (userByEmail.length > 0) {
     return ALREADY_REGISTERED;
@@ -18,7 +18,9 @@ module.exports = async (user) => {
 
   const newUser = (await Models.create(user)).ops[0];
 
-  const newUserWithoutPassword = { name: newUser.name, email: newUser.email, role: newUser.role };
+  const { name, email, role, _id } = newUser;
+
+  const newUserWithoutPassword = { name, email, role, _id };
 
   return { status: StatusCodes.CREATED, message: newUserWithoutPassword };
 };

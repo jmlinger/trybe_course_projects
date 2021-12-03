@@ -1,5 +1,5 @@
 // const { StatusCodes } = require('http-status-codes');
-const Service = require('../../services/auth');
+const Service = require('../../services/login');
 
 /** @type { import('express').RequestHandler } */
 

@@ -3,11 +3,12 @@ const jwt = require('jsonwebtoken');
 const API_SECRET = 'mysecret';
 
 const JWT_CONFIG = {
-  expiresIn: 60,
+  expiresIn: '15m',
   algorithm: 'HS256',
 };
 
 const genToken = (data) => {
+  console.log(data);
   const token = jwt.sign({ data }, API_SECRET, JWT_CONFIG);
   return token;
 };
@@ -15,9 +16,10 @@ const genToken = (data) => {
 const verifyToken = (token) => {
   try {
     const decoded = jwt.verify(token, API_SECRET);
-    const { username } = decoded.data;
+    const user = decoded.data;
+    console.log(user);
 
-    return username;
+    return user;
   } catch (err) {
     return null;
   }

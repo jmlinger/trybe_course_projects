@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const Service = require('../services/auth/auth');
+const Service = require('../services/auth');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
@@ -8,10 +8,10 @@ module.exports = (req, res, next) => {
     return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'token não informado!' });
   }
 
-  const user = Service.verifyToken(authorization);
+  const user = Service.auth.verifyToken(authorization);
 
   if (!user) {
-    return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'token inválido' });
+    return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'jwt malformed' });
   }
 
   req.user = user;
