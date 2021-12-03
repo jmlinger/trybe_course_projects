@@ -8,4 +8,6 @@ router.post('/', auth, rescue(require('./create')));
 
 router.get('/', rescue(require('./list')));
 
+router.get('/:id', rescue(require('./get')));
+
 module.exports = router;

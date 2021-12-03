@@ -20,9 +20,15 @@ const INCORRECT_LOGIN = {
   message: 'Incorrect username or password',
 };
 
+const RECIPE_NOT_FOUND = {
+  status: StatusCodes.NOT_FOUND,
+  message: 'recipe not found',
+};
+
 module.exports = {
   INVALID_ENTRIES,
   ALREADY_REGISTERED,
   ALL_MUST_BE_FILLED,
   INCORRECT_LOGIN,
+  RECIPE_NOT_FOUND,
 };
