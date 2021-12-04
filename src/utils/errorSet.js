@@ -25,10 +25,16 @@ const RECIPE_NOT_FOUND = {
   message: 'recipe not found',
 };
 
+const DONT_OWN_RECIPE = {
+  status: StatusCodes.UNAUTHORIZED,
+  message: 'You dont own this recipe',
+};
+
 module.exports = {
   INVALID_ENTRIES,
   ALREADY_REGISTERED,
   ALL_MUST_BE_FILLED,
   INCORRECT_LOGIN,
   RECIPE_NOT_FOUND,
+  DONT_OWN_RECIPE,
 };

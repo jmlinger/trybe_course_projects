@@ -10,4 +10,6 @@ router.get('/', rescue(require('./list')));
 
 router.get('/:id', rescue(require('./get')));
 
+router.put('/:id', auth, rescue(require('./update')));
+
 module.exports = router;
