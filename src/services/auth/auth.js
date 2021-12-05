@@ -8,7 +8,6 @@ const JWT_CONFIG = {
 };
 
 const genToken = (data) => {
-  console.log(data);
   const token = jwt.sign({ data }, API_SECRET, JWT_CONFIG);
   return token;
 };
@@ -17,7 +16,6 @@ const verifyToken = (token) => {
   try {
     const decoded = jwt.verify(token, API_SECRET);
     const user = decoded.data;
-    console.log(user);
 
     return user;
   } catch (err) {

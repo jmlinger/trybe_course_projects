@@ -12,4 +12,6 @@ router.get('/:id', rescue(require('./get')));
 
 router.put('/:id', auth, rescue(require('./update')));
 
+router.delete('/:id', auth, rescue(require('./remove')));
+
 module.exports = router;
