@@ -14,7 +14,7 @@ const idAndRecipeValidations = (id, recipe) => {
   }
 };
 
-module.exports = async (user, id, recipe) => {
+module.exports = async (user, file, id, recipe) => {
   idAndRecipeValidations(id, recipe);
 
   const matchedRecipe = await Models.findById(id);
@@ -28,7 +28,10 @@ module.exports = async (user, id, recipe) => {
   if (matchedRecipe.userId !== _id && role === 'user') {
     return DONT_OWN_RECIPE;
   }
-  await Models.update({ id, ...recipe });
+
+  await Models.update(file
+    ? { id, ...recipe, image: `localhost:3000/${file.path}` }
+    : { id, ...recipe });
 
   const updatedRecipe = await Models.findById(id);
 
