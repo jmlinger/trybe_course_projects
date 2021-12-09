@@ -1,0 +1,3 @@
+apps:
+  - name: stranger_things
+    script: ./index.js
