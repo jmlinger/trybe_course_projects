@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "npm install pm2",
     "start": "pm2-runtime start ecosystem.config.yml",
     "start:dev": "pm2-runtime start index.js --watch ",
     "test": "jest --runInBand  --detectOpenHandles --forceExit",
