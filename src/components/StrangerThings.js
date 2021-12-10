@@ -16,12 +16,12 @@ const {
 } = process.env;
 
 const strangerThingsConfig = {
-  url: REACT_APP_HAWKINS_URL || '3002',
+  url: REACT_APP_HAWKINS_URL,
   timeout: REACT_APP_HAWKINS_TIMEOUT,
 };
 
 const upsideDownConfig = {
-  url: REACT_APP_UPSIDEDOWN_URL || '3003',
+  url: REACT_APP_UPSIDEDOWN_URL,
   timeout: REACT_APP_UPSIDEDOWN_TIMEOUT,
 };
 
