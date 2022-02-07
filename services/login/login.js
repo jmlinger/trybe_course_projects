@@ -13,11 +13,8 @@ module.exports = async (user) => {
   
   let findUserByEmail = await Models.User.findOne({ where: { email: user.email } });
   findUserByEmail = findUserByEmail ? findUserByEmail.dataValues : null;
-  console.log(findUserByEmail);
   
   if (!findUserByEmail || findUserByEmail.password !== user.password) {
-    console.log(user.password);
-
     return INVALID_FIELDS;
   }
 

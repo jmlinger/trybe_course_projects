@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-const API_SECRET = 'mysecret';
+const API_SECRET = process.env.JWT_SECRET;
 
 const JWT_CONFIG = {
   expiresIn: '15m',
