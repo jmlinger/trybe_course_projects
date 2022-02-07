@@ -13,7 +13,8 @@ const User = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.STRING,
     },
-  });
+  }, 
+  { timestamps: false });
   
   return Users;
 };
