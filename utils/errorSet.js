@@ -15,8 +15,14 @@ const INVALID_FIELDS = {
   message: 'Invalid fields',
 };
 
+const USER_NOT_EXIST = {
+  status: StatusCodes.NOT_FOUND,
+  message: 'User does not exist',
+};
+
 module.exports = {
   INVALID_ENTRIES,
   ALREADY_REGISTERED,
   INVALID_FIELDS,
+  USER_NOT_EXIST,
 };
