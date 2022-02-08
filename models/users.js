@@ -1,14 +1,13 @@
-// eslint-disable-next-line max-lines-per-function
 const User = (sequelize, DataTypes) => {
   const Users = sequelize.define('User', {
     displayName: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     email: {
       type: DataTypes.STRING,
     },
     password: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.STRING,
     },
     image: {
       type: DataTypes.STRING,
