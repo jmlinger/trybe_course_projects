@@ -20,6 +20,11 @@ const USER_NOT_EXIST = {
   message: 'User does not exist',
 };
 
+const POST_NOT_EXIST = {
+  status: StatusCodes.NOT_FOUND,
+  message: 'Post does not exist',
+};
+
 const CATEGORIES_NOT_FOUND = {
   status: StatusCodes.BAD_REQUEST,
   message: '"categoryIds" not found',
@@ -31,4 +36,5 @@ module.exports = {
   INVALID_FIELDS,
   USER_NOT_EXIST,
   CATEGORIES_NOT_FOUND,
+  POST_NOT_EXIST,
 };
