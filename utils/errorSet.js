@@ -20,9 +20,15 @@ const USER_NOT_EXIST = {
   message: 'User does not exist',
 };
 
+const CATEGORIES_NOT_FOUND = {
+  status: StatusCodes.BAD_REQUEST,
+  message: '"categoryIds" not found',
+};
+
 module.exports = {
   INVALID_ENTRIES,
   ALREADY_REGISTERED,
   INVALID_FIELDS,
   USER_NOT_EXIST,
+  CATEGORIES_NOT_FOUND,
 };

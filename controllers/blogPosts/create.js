@@ -1,9 +1,10 @@
-const Services = require('../../services/categories');
+const Services = require('../../services/blogPosts');
 
 module.exports = async (req, res, _next) => {
-  const category = req.body;
-  console.log(category);
-  const result = await Services.create(category);
+  const post = req.body;
+  const userId = req.user.id;
+
+  const result = await Services.create(post, userId);
 
   return res.status(result.status)
     .json(typeof result.message !== 'object'
