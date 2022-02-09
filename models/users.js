@@ -6,14 +6,10 @@ const User = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
   }, 
   { timestamps: false });
-  
+
+  // seria necessário fazer essa associação caso houvesse aqui uma chave com blogposts.
   Users.associate = (models) => {
     Users.hasMany(models.BlogPost,
-      { foregnKey: 'id', as: 'blogposts' });
-  };
-
-  User.associate = (models) => {
-    User.hasMany(models.BlogPost,
       { foreignKey: 'id', as: 'blogposts' });
   };
 
