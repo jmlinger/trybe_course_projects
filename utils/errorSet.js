@@ -30,6 +30,16 @@ const CATEGORIES_NOT_FOUND = {
   message: '"categoryIds" not found',
 };
 
+const CATEGORIES_CANNOT_BE_EDITED = {
+  status: StatusCodes.BAD_REQUEST,
+  message: 'Categories cannot be edited',
+};
+
+const UNAUTHORIZED_USER = {
+  status: StatusCodes.UNAUTHORIZED,
+  message: 'Unauthorized user',
+};
+
 module.exports = {
   INVALID_ENTRIES,
   ALREADY_REGISTERED,
@@ -37,4 +47,6 @@ module.exports = {
   USER_NOT_EXIST,
   CATEGORIES_NOT_FOUND,
   POST_NOT_EXIST,
+  UNAUTHORIZED_USER,
+  CATEGORIES_CANNOT_BE_EDITED,
 };
