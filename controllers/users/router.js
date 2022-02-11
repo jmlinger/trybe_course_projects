@@ -7,9 +7,11 @@ const auth = require('../../middewares/auth');
 const create = require('./create');
 const list = require('./list');
 const get = require('./get');
+const remove = require('./remove');
 
 router.post('/', rescue(create));
 router.get('/', auth, rescue(list));
 router.get('/:id', auth, rescue(get));
+router.delete('/me', auth, rescue(remove));
 
 module.exports = router;
