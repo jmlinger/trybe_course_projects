@@ -9,9 +9,11 @@ const list = require('./list');
 const get = require('./get');
 const update = require('./update');
 const remove = require('./remove');
+const getBySearch = require('./getBySearch');
 
 router.post('/', auth, rescue(create));
 router.get('/', auth, rescue(list));
+router.get('/search', auth, rescue(getBySearch));
 router.get('/:id', auth, rescue(get));
 router.put('/:id', auth, rescue(update));
 router.delete('/:id', auth, rescue(remove));
