@@ -12,13 +12,13 @@ module.exports = async (user) => {
   }
   
   const { email: userEmail } = user;
-  const findUserByEmail = await Models.User.findOne({ where: { email: userEmail } });
+  const findUserByEmail = await Models.Users.findOne({ where: { email: userEmail } });
   
   if (findUserByEmail) {
     return ALREADY_REGISTERED;
   }
   
-  const newUser = (await Models.User.create(user)).dataValues;
+  const newUser = (await Models.Users.create(user)).dataValues;
 
   delete newUser.password;
   const newUserWithoutPassword = newUser;

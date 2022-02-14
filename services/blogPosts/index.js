@@ -1,6 +1,6 @@
 const create = require('./create');
 const list = require('./list');
-const get = require('./get');
+const getById = require('./getById');
 const update = require('./update');
 const remove = require('./remove');
 const getBySearch = require('./getBySearch');
@@ -8,7 +8,7 @@ const getBySearch = require('./getBySearch');
 module.exports = {
   create,
   list,
-  get,
+  getById,
   update,
   remove,
   getBySearch,

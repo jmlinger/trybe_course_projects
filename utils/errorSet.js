@@ -35,6 +35,11 @@ const CATEGORIES_CANNOT_BE_EDITED = {
   message: 'Categories cannot be edited',
 };
 
+const CATEGORY_ALREADY_REGISTERED = {
+  status: StatusCodes.CONFLICT,
+  message: 'Category already registered',
+};
+
 const UNAUTHORIZED_USER = {
   status: StatusCodes.UNAUTHORIZED,
   message: 'Unauthorized user',
@@ -49,4 +54,5 @@ module.exports = {
   POST_NOT_EXIST,
   UNAUTHORIZED_USER,
   CATEGORIES_CANNOT_BE_EDITED,
+  CATEGORY_ALREADY_REGISTERED,
 };

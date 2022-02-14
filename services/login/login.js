@@ -11,7 +11,7 @@ module.exports = async (user) => {
     return INVALID_ENTRIES(validationError.message);
   }
   
-  let findUserByEmail = await Models.User.findOne({ where: { email: user.email } });
+  let findUserByEmail = await Models.Users.findOne({ where: { email: user.email } });
   findUserByEmail = findUserByEmail ? findUserByEmail.dataValues : null;
   
   if (!findUserByEmail || findUserByEmail.password !== user.password) {

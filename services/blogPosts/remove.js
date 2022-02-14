@@ -3,7 +3,7 @@ const Models = require('../../models');
 const { POST_NOT_EXIST, UNAUTHORIZED_USER } = require('../../utils/errorSet');
 
 module.exports = async (postId, userId) => {  
-  const postById = await Models.BlogPost.findByPk(postId);
+  const postById = await Models.BlogPosts.findByPk(postId);
 
   if (!postById) {
     return POST_NOT_EXIST;
@@ -13,7 +13,7 @@ module.exports = async (postId, userId) => {
     return UNAUTHORIZED_USER;
   }
 
-  await Models.BlogPost.destroy({ where: { id: postId } });
+  await Models.BlogPosts.destroy({ where: { id: postId } });
 
   return { status: StatusCodes.NO_CONTENT };
 };

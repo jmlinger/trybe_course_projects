@@ -11,13 +11,13 @@ module.exports = async (post, userId) => {
   }
   
   const { categoryIds } = post;
-  const findCategoriesById = await Models.Categorie.findAll({ where: { id: categoryIds } });
+  const findCategoriesById = await Models.Categories.findAll({ where: { id: categoryIds } });
   
   if (findCategoriesById.length < categoryIds.length) {
     return CATEGORIES_NOT_FOUND;
   }
   
-  const newPost = await Models.BlogPost.create({ ...post, userId });
+  const newPost = await Models.BlogPosts.create({ ...post, userId });
   
   const { id: postId } = newPost;
   categoryIds.forEach((categoryId) => Models.PostsCategories.create({ postId, categoryId }));

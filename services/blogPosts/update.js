@@ -14,17 +14,18 @@ module.exports = async (post, postId, userId) => {
 
   if (post.categoryIds) return CATEGORIES_CANNOT_BE_EDITED;
 
-  const postById = await Models.BlogPost.findOne({ where: { id: postId } });
+  const postById = await Models.BlogPosts.findOne({ where: { id: postId } });
   if (!postById) return POST_NOT_EXIST;
   if (postById.userId !== userId) return UNAUTHORIZED_USER;
   
   const { title, content } = post;
-  await Models.BlogPost.update({ title, content }, { where: { id: postId } });
-  const updatedPost = await Models.BlogPost.findOne({
+  await Models.BlogPosts.update({ title, content }, { where: { id: postId } });
+  
+  const updatedPost = await Models.BlogPosts.findOne({
     where: { id: postId },
     include: [
-      { model: Models.User, as: 'user', attributes: { exclude: ['password'] } },
-      { model: Models.Categorie, as: 'categories' },
+      { model: Models.Users, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Models.Categories, as: 'categories' },
     ],
   });
 
