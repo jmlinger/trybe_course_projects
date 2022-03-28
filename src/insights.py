@@ -1,19 +1,17 @@
+from src.jobs import read
+
+
 def get_unique_job_types(path):
-    """Checks all different job types and returns a list of them
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique job types
-    """
-    return []
+    jobs_data = read(path)
+    job_types = []
+    for row in jobs_data:
+        job_type = row["job_type"]
+        job_types.append(job_type)
+    unique_job_types = list(dict.fromkeys(job_types))
+    # O método dict.fromkeys da classe dict obtem valores unicos de uma lista.
+    # Este método preserva a ordem original dos elementos e mantém apenas
+    # o primeiro elemento das duplicatas.
+    return unique_job_types
 
 
 def filter_by_job_type(jobs, job_type):
