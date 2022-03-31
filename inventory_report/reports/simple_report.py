@@ -20,21 +20,25 @@ class SimpleReport:
 
     @classmethod
     def generate(self, list):
-        manufacturing_date = min([date["data_de_fabricacao"] for date in list])
-        expiration_date = self.string_to_date(list[0]["data_de_validade"])
+        manufacturing_date_final = min(
+            [date["data_de_fabricacao"] for date in list]
+        )
+        expiration_date_final = self.string_to_date(
+            list[0]["data_de_validade"]
+        )
         company_name_list = []
         for item in list:
             company_name_list.append(item["nome_da_empresa"])
-            expiration_date_item = self.string_to_date(item["data_de_validade"])
-            if date.today() < expiration_date_item < expiration_date:
-                expiration_date = expiration_date_item
+            expiration_date = self.string_to_date(item["data_de_validade"])
+            if date.today() < expiration_date < expiration_date_final:
+                expiration_date_final = expiration_date
 
-        company_name = self.count_company(company_name_list)
+        company_name_final = self.count_company(company_name_list)
         manufacturing_text = 'Data de fabricação mais antiga:'
         expiration_text = 'Data de validade mais próxima:'
         company_Text = 'Empresa com maior quantidade de produtos estocados:'
         return (
-            f'{manufacturing_text} {manufacturing_date}\n'
-            f'{expiration_text} {expiration_date}\n'
-            f'{company_Text} {company_name}\n'
+            f'{manufacturing_text} {manufacturing_date_final}\n'
+            f'{expiration_text} {expiration_date_final}\n'
+            f'{company_Text} {company_name_final}\n'
         )
