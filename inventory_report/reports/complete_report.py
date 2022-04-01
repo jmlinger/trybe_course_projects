@@ -12,12 +12,12 @@ class CompleteReport(SimpleReport):
         return company_list
 
     @classmethod
-    def generate(self, data):
+    def generate(cls, data):
         simple_report = SimpleReport.generate(data)
         company_name_list = []
         for company_name in data:
             company_name_list.append(company_name["nome_da_empresa"])
-        company_list = self.count_company(company_name_list)
+        company_list = cls.count_company(company_name_list)
         company_stock_list = list(
             map(
                 lambda item: f'{item["name"]}: {item["count"]}',
