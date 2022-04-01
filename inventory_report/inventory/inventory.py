@@ -1,8 +1,8 @@
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
-import csv
-import json
-import xml.etree.ElementTree as ET
+from inventory_report.importer.csv_importer import CsvImporter
+from inventory_report.importer.json_importer import JsonImporter
+from inventory_report.importer.xml_importer import XmlImporter
 
 
 class Inventory:
@@ -15,18 +15,9 @@ class Inventory:
     @classmethod
     def import_data(cls, path, details):
         if path.endswith(".csv"):
-            with open(path) as file:
-                data = list(csv.DictReader(file))
+            data = CsvImporter.import_data(path)
         elif path.endswith(".json"):
-            with open(path) as file:
-                data = json.load(open(path))
+            data = JsonImporter.import_data(path)
         else:
-            data = []
-            read_xml = ET.parse(path).getroot()
-            for product in read_xml:
-                obj = {}
-                for attribute in product:
-                    obj[attribute.tag] = attribute.text
-                data.append(obj)
-
+            data = XmlImporter.import_data(path)
         return cls.details_return(data, details)
