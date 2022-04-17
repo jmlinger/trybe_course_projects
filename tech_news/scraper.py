@@ -1,8 +1,8 @@
 import requests
-# from parsel import Selector
+from parsel import Selector
 import time
 
-# base_url = "https://www.tecmundo.com.br/novidades"
+base_url = "https://www.tecmundo.com.br/novidades"
 
 
 # Requisito 1
@@ -20,7 +20,8 @@ def fetch(url, timeout=3):
 
 # Requisito 2
 def scrape_novidades(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(text=html_content)
+    return selector.css("h3.tec--card__title a::attr(href)").getall()
 
 
 # Requisito 3
