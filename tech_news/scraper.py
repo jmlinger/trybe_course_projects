@@ -1,8 +1,7 @@
 import requests
 from parsel import Selector
 import time
-
-# base_url = "https://www.tecmundo.com.br/"
+from tech_news.database import create_news
 
 
 # Requisito 1
@@ -40,7 +39,8 @@ def scrape_noticia(html_content):
     url = selector.css("link[rel='canonical']::attr(href)").get()
     title = selector.css("div h1::text").get()
     timestamp = selector.css("#js-article-date::attr(datetime)").get()
-    writer = selector.css(".z--font-bold *::text").get().strip()
+    writer = selector.css(".z--font-bold *::text").get()
+    writer = None if writer is None else writer.strip()
     shares_count = selector.css(
         "div.tec--toolbar__item::text"
     ).re_first(r"[0-9][0-9]")
@@ -73,9 +73,22 @@ def scrape_noticia(html_content):
         "categories": categories
     }
 
-# print(scrape_noticia(fetch(base_url)))
-
 
 # Requisito 5
 def get_tech_news(amount):
-    """Seu código deve vir aqui"""
+    url = "https://www.tecmundo.com.br/novidades"
+    url_news_list = []
+    while len(url_news_list) < amount:
+        html_content = fetch(url)
+        url_news_list.extend(scrape_novidades(html_content))
+        next_page_url = scrape_next_page_link(html_content)
+        url = next_page_url
+
+    news_dict_list = []
+    for url_news in url_news_list[:amount]:
+        html_content = fetch(url_news)
+        news = scrape_noticia(html_content)
+        news_dict_list.append(news)
+
+    create_news(news_dict_list)
+    return news_dict_list
