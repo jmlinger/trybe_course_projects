@@ -36,4 +36,7 @@ def search_by_source(source):
 
 # Requisito 9
 def search_by_category(category):
-    """Seu código deve vir aqui"""
+    query = {"categories": ignore_case(category)}
+    news_list = search_news(query)
+
+    return [(news["title"], news["url"]) for news in news_list]
