@@ -50,9 +50,11 @@ def scrape_noticia(html_content):
     writer = None if writer is None else writer.strip()
 
     shares_str = selector.css("div.tec--toolbar__item::text").get()
-    shares_count = (0
-                    if shares_str is None
-                    else int(shares_str.strip(" Compartilharam")))
+    shares_count = (
+        0
+        if shares_str is None
+        else int(shares_str.strip(" Compartilharam"))
+    )
 
     comments = selector.css("#js-comments-btn::attr(data-count)").get()
     comments_count = 0 if comments is None else int(comments)
