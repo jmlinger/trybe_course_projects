@@ -1,4 +1,5 @@
 from tech_news.database import search_news
+from datetime import datetime
 
 
 def ignore_case(string):
@@ -15,7 +16,14 @@ def search_by_title(title):
 
 # Requisito 7
 def search_by_date(date):
-    """Seu código deve vir aqui"""
+    try:
+        datetime.strptime(date, "%Y-%m-%d")
+        query = {"timestamp": ignore_case(date)}
+        news_list = search_news(query)
+
+        return [(news["title"], news["url"]) for news in news_list]
+    except ValueError:
+        raise ValueError('Data inválida')
 
 
 # Requisito 8
