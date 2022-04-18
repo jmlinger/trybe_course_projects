@@ -1,6 +1,16 @@
+from tech_news.database import search_news
+
+
+def ignore_case(string):
+    return {"$regex": string, "$options": "i"}
+
+
 # Requisito 6
 def search_by_title(title):
-    """Seu código deve vir aqui"""
+    query = {"title": ignore_case(title)}
+    news_list = search_news(query)
+
+    return [(news["title"], news["url"]) for news in news_list]
 
 
 # Requisito 7
