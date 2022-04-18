@@ -4,6 +4,10 @@ import time
 from tech_news.database import create_news
 
 
+# shares_str = " 11 Compartilharam"
+# print(shares_str.strip(" Compartilharam"))
+# print(re.sub("Compartilharam", " ", shares_str))
+
 # Requisito 1
 def fetch(url, timeout=3):
     time.sleep(1)
@@ -37,23 +41,31 @@ def scrape_noticia(html_content):
     selector = Selector(text=html_content)
 
     url = selector.css("link[rel='canonical']::attr(href)").get()
+
     title = selector.css("div h1::text").get()
+
     timestamp = selector.css("#js-article-date::attr(datetime)").get()
+
     writer = selector.css(".z--font-bold *::text").get()
     writer = None if writer is None else writer.strip()
-    shares_count = selector.css(
-        "div.tec--toolbar__item::text"
-    ).re_first(r"[0-9][0-9]")
-    shares_count = 0 if shares_count is None else shares_count
-    comments_count = selector.css("#js-comments-btn::attr(data-count)").get()
-    comments_count = 0 if comments_count is None else int(comments_count)
+
+    shares_str = selector.css("div.tec--toolbar__item::text").get()
+    shares_count = (0
+                    if shares_str is None
+                    else int(shares_str.strip(" Compartilharam")))
+
+    comments = selector.css("#js-comments-btn::attr(data-count)").get()
+    comments_count = 0 if comments is None else int(comments)
+
     summary = "".join(selector.css(
         "div.tec--article__body > p:first-child *::text"
     ).getall())
+
     sources = [
         source[1:-1]  # para retirar os espaços.
         for source in selector.css("div.z--mb-16 a::text").getall()
     ]
+
     categories = [
         category[1:-1]  # para retirar os espaços.
         for category in selector.css(
@@ -92,3 +104,5 @@ def get_tech_news(amount):
 
     create_news(news_dict_list)
     return news_dict_list
+
+# scrape_noticia(fetch("https://www.tecmundo.com.br/software/215082-conheca-shopify-sistema-criar-loja-online.htm"))
