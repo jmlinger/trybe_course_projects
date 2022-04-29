@@ -1,11 +1,11 @@
 def study_schedule(permanence_period, target_time):
-    if type(target_time) is not int:
+    if type(target_time) != int:
         return None
     count = 0
-    for period in permanence_period:
-        if (type(period[0]) is not int or
-                type(period[1]) is not int):
+    for time_in, time_out in permanence_period:
+        if (type(time_in) != int or
+                type(time_out) != int):
             return None
-        if period[0] <= target_time <= period[1]:
+        if time_in <= target_time <= time_out:
             count += 1
     return count
