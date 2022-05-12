@@ -44,7 +44,13 @@ class TrackOrders:
         return unique_all_days.difference(unique_visited_days)
 
     def get_busiest_day(self):
-        pass
+        all_days = [
+            item['day'] for item in self.orders
+        ]
+        return Counter(all_days).most_common(1)[0][0]
 
     def get_least_busy_day(self):
-        pass
+        all_days = [
+            item['day'] for item in self.orders
+        ]
+        return Counter(all_days).most_common()[-1][0]
