@@ -1,73 +1,82 @@
 import csv
+from collections import Counter
+
+
+def read_file(path):
+    try:
+        with open(path, 'r') as file:
+            file_reader = csv.DictReader(
+                file,
+                delimiter=',',
+                fieldnames=('customer', 'order', 'day')
+            )
+            file_data = list(file_reader)
+            return file_data
+    except FileNotFoundError:
+        if not path.endswith('.csv'):
+            raise FileNotFoundError(f'Extensão inválida: {path}')
+        raise FileNotFoundError(f'Arquivo inexistente: {path}')
+
+
+def most_ordered_dish(customer, data):
+    purchased_products = [
+        item['order']
+        for item in data if item['customer'] == customer
+    ]
+    return Counter(purchased_products).most_common(1)[0][0]
+
+
+def hamburguers_count(customer, data):
+    purchased_products = [
+        item['order']
+        for item in data if item['customer'] == customer
+    ]
+
+    return Counter(purchased_products)['hamburguer']
+
+
+def never_ordered_dishes(customer, data):
+    all_products = [
+        item['order'] for item in data
+    ]
+    purchased_products = [
+        item['order']
+        for item in data if item['customer'] == customer
+    ]
+    unique_all_products = set(list(Counter(all_products)))
+    unique_purchased_products = set(list(Counter(purchased_products)))
+
+    return unique_all_products.difference(unique_purchased_products)
+
+
+def never_come_days(customer, data):
+    all_days = [
+        item['day'] for item in data
+    ]
+    visited_days = [
+        item['day']
+        for item in data if item['customer'] == customer
+    ]
+    unique_all_days = set(list(Counter(all_days)))
+    unique_visited_days = set(list(Counter(visited_days)))
+    return unique_all_days.difference(unique_visited_days)
+
+
+def write_file(data):
+    marias_most_ordered_dish = most_ordered_dish('maria', data)
+    arnaldos_hamburguers_count = hamburguers_count('arnaldo', data)
+    joaos_never_ordered_dishes = never_ordered_dishes('joao', data)
+    joaos_never_come_days = never_come_days('joao', data)
+
+    with open('data/mkt_campaign.txt', 'w') as file:
+        file.write(
+            f'{marias_most_ordered_dish}\n'
+            f'{arnaldos_hamburguers_count}\n'
+            f'{joaos_never_ordered_dishes}\n'
+            f'{joaos_never_come_days}'
+        )
 
 
 def analyze_log(path_to_file):
-    if not path_to_file.endswith('csv'):
-        raise FileNotFoundError(f'Extensão inválida: {path_to_file}')
-    try:
-        with open(path_to_file) as file:
-            content = []
-            for line in csv.DictReader(
-                file, fieldnames=('name', 'meal', 'day')
-            ):
-                content.append(line)
-
-        maria_most_ordered_meal = maria_most_ordered(content)
-        arnaldo_hamburguer_count = arnaldo_count(content)
-        joao_never_ordered_meal = joao_never_ordered(content)
-        days_joao_never_come = joao_missing_days(content)
-
-        with open('data/mkt_campaign.txt', 'w') as file:
-            file.write(
-                f'{maria_most_ordered_meal}\n'
-                f'{arnaldo_hamburguer_count}\n'
-                f'{joao_never_ordered_meal}\n'
-                f'{days_joao_never_come}'
-            )
-    except FileNotFoundError:
-        raise FileNotFoundError(f'Arquivo inexistente: {path_to_file}')
-
-
-def maria_most_ordered(info):
-    maria_orders = [item for item in info if item['name'] == 'maria']
-    all_maria_meals = dict()
-    most_ordered = maria_orders[0]['meal']
-    for order in maria_orders:
-        if order['meal'] not in all_maria_meals:
-            all_maria_meals[order['meal']] = 1
-        else:
-            all_maria_meals[order['meal']] += 1
-        if all_maria_meals[order['meal']] > all_maria_meals[most_ordered]:
-            most_ordered = order['meal']
-    return most_ordered
-
-
-def arnaldo_count(info):
-    arnaldo_orders = [item for item in info if item['name'] == 'arnaldo']
-    hamburguer_count = 0
-    for order in arnaldo_orders:
-        if order['meal'] == 'hamburguer':
-            hamburguer_count += 1
-    return hamburguer_count
-
-
-def joao_never_ordered(info):
-    all_meals = set()
-    for order in info:
-        all_meals.add(order['meal'])
-    joao_orders = [item for item in info if item['name'] == 'joao']
-    joao_meals = set()
-    for order in joao_orders:
-        joao_meals.add(order['meal'])
-    return all_meals.difference(joao_meals)
-
-
-def joao_missing_days(info):
-    all_days = set()
-    for order in info:
-        all_days.add(order['day'])
-    joao_orders = [item for item in info if item['name'] == 'joao']
-    joao_days = set()
-    for order in joao_orders:
-        joao_days.add(order['day'])
-    return all_days.difference(joao_days) 
+    file_data = read_file(path_to_file)
+    write_file(file_data)
