@@ -3,6 +3,9 @@ from .file_management import txt_importer
 
 
 def process(path_file, instance):
+    if any(info["nome_do_arquivo"] == path_file for info in instance.data):
+        return
+
     file_lines_list = txt_importer(path_file)
 
     file_info = {
@@ -11,8 +14,7 @@ def process(path_file, instance):
         "linhas_do_arquivo": file_lines_list
     }
 
-    if all(info["nome_do_arquivo"] != path_file for info in instance.data):
-        instance.enqueue(file_info)
+    instance.enqueue(file_info)
 
     sys.stdout.write(f"{file_info}")
 
