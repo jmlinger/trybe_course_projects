@@ -23,9 +23,13 @@ def remove(instance):
 
     deleted_file = instance.dequeue()
     path_file = deleted_file["nome_do_arquivo"]
-    
+
     sys.stdout.write(f"Arquivo {path_file} removido com sucesso\n")
 
 
 def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+    if 0 <= position <= len(instance.data):
+        file_info = instance.data[position]
+        print(file_info)
+
+    sys.stderr.write("Posição inválida")
