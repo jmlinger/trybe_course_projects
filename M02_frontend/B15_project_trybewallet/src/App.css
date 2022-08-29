@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+}
+
+.wallet-header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.expenses-container {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: 10%;
+  margin-right: 10px;
+}
+
+.totalExpense {
+  display: inline;
+}
+
+.wallet-form {
+  align-items: center;
+  background-color: darkslategray;
+  border-style: ridge;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 5px;
+}
+
+.form-items {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+}
