@@ -1,0 +1,15 @@
+.buttons {
+  background-color: transparent;
+  border: none;
+}
+
+.footer {
+  background-color: #02635ab8;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  position: fixed;
+  width: 100%;
+}
