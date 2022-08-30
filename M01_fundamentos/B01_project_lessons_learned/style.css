@@ -1,0 +1,42 @@
+body {
+  font-family: Georgia, sans-serif;
+  font-size: 30px;
+  line-height: 50px;
+  background-color: rgb(253, 251, 251);
+  margin: 0%;
+  padding: 0%;
+  border: 0%;
+}
+
+header {
+  top: 0;
+  position: fixed;
+  background-color: darkblue;
+  color: white;
+  width: 10000px;
+}
+
+#minha_foto {
+  width: 250px;
+  margin-top: 150px;
+}
+
+.lado-esquerdo {
+  float: left;
+  max-width: 35%;
+  margin-left: 60px;
+}
+
+.lado-direito {
+  float: right;
+  max-width: 35%;
+  margin-right: 60px;
+  vertical-align: middle;
+}
+
+.textos {
+  background-color: rgba(250, 250, 250, 0.527);
+  padding: 40px;
+  min-height: 450px;
+  text-align: center;
+}
