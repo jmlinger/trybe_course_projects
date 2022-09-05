@@ -4,8 +4,8 @@ import json
 
 class JsonImporter(Importer):
     def import_data(path):
-        if path.endswith(".json"):
+        try:
             with open(path) as file:
                 return json.load(file)
-        else:
+        except ValueError:
             raise ValueError('Arquivo inválido')
